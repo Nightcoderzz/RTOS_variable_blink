@@ -4,40 +4,39 @@
 #include "CLK_CONFIG.h"
 
 
-#define GPIO_A  (1 << 0)
-#define LED 	(0b01 << 10);
-#define LED_ON
-#define LED_OFF
-
+#define GPIO_A  	(1U << 0)
+#define LED_OUT 	(0b01 << 10)
+#define LED_OUT_CLR (0b11 << 10)
+#define LED_ON 		(1U << 5)
+#define LED_OFF 	(1U << 21)
 
 
 void BLINK_INIT (){
 
 	RCC->IOPENR |= GPIO_A;
 
-	GPIOA->MODER |= LED;
+	GPIOA->MODER &= ~LED_OUT_CLR;
+	GPIOA->MODER |= LED_OUT;
+
 
 }
 
 int main(void)
 {
 	BLINK_INIT ();
-	//SYS_CLK_CONFIG();
+	SYS_CLK_CONFIG();
 
 	while (1){
 
 
-			GPIOA->BSRR &= (0 << 5); // rested BSRR
+			GPIOA->BSRR = LED_ON; //pa5 SET
 
-			GPIOA->BSRR |= (1 << 5); //pa5 SET
-			GPIOA->BSRR &= (0 << 21); //PA5 RESET
+			for (volatile int i =0; i<1000000; i++);
 
-			for (volatile int i =0; i<100000; i++);
 
-			GPIOA->BSRR |= (0 << 5);
-			GPIOA->BSRR |= (1 << 21); //PA5 RESET
+			GPIOA->BSRR = LED_OFF; //PA5 RESET
 
-			for (volatile int i =0; i<100000; i++);
+			for (volatile int i =0; i<1000000; i++);
 
 
 
