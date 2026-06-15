@@ -2,11 +2,12 @@
 
 
 
-#include "stm32c0xx.h"
+#include "stm32c031xx.h"
 
 void SYS_CLK_CONFIG (){
 
 	int timeout = 10000U;
+
 
 	RCC->CR |= (1U << 16); // HSE enable
 	while (!(RCC->CR & (1U << 17))){} // HSE enable flag
