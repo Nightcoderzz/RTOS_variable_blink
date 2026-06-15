@@ -17,8 +17,6 @@ void BLINK_INIT (){
 
 	GPIOA->MODER &= ~LED_OUT_CLR;
 	GPIOA->MODER |= LED_OUT;
-
-
 }
 
 int main(void)
@@ -31,16 +29,12 @@ int main(void)
 
 			GPIOA->BSRR = LED_ON; //pa5 SET
 
-			for (volatile int i =0; i<1000000; i++);
+			for (volatile int i =0; i<10000000; i++);
 
 
 			GPIOA->BSRR = LED_OFF; //PA5 RESET
 
-			for (volatile int i =0; i<1000000; i++);
-
-
-
-
+			for (volatile int i =0; i<10000000; i++);
 
 
 	}

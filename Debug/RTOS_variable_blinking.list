@@ -191,8 +191,6 @@ void BLINK_INIT (){
  8000190:	00c9      	lsls	r1, r1, #3
  8000192:	430a      	orrs	r2, r1
  8000194:	601a      	str	r2, [r3, #0]
-
-
 }
  8000196:	46c0      	nop			@ (mov r8, r8)
  8000198:	46bd      	mov	sp, r7
@@ -221,7 +219,7 @@ int main(void)
  80001b6:	2220      	movs	r2, #32
  80001b8:	619a      	str	r2, [r3, #24]
 
-			for (volatile int i =0; i<1000000; i++);
+			for (volatile int i =0; i<10000000; i++);
  80001ba:	2300      	movs	r3, #0
  80001bc:	607b      	str	r3, [r7, #4]
  80001be:	e002      	b.n	80001c6 <main+0x22>
@@ -241,7 +239,7 @@ int main(void)
  80001d4:	0392      	lsls	r2, r2, #14
  80001d6:	619a      	str	r2, [r3, #24]
 
-			for (volatile int i =0; i<1000000; i++);
+			for (volatile int i =0; i<10000000; i++);
  80001d8:	2300      	movs	r3, #0
  80001da:	603b      	str	r3, [r7, #0]
  80001dc:	e002      	b.n	80001e4 <main+0x40>
@@ -255,7 +253,7 @@ int main(void)
 			GPIOA->BSRR = LED_ON; //pa5 SET
  80001ec:	e7e1      	b.n	80001b2 <main+0xe>
  80001ee:	46c0      	nop			@ (mov r8, r8)
- 80001f0:	000f423f 	.word	0x000f423f
+ 80001f0:	0098967f 	.word	0x0098967f
 
 080001f4 <Reset_Handler>:
 */
