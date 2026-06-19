@@ -11,6 +11,9 @@ RM := rm -rf
 -include sources.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
+-include FreeRTOS-Kernel/portable/MemMang/subdir.mk
+-include FreeRTOS-Kernel/portable/GCC/ARM_CM0/subdir.mk
+-include FreeRTOS-Kernel/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
