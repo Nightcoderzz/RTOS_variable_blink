@@ -1,4 +1,5 @@
-
+#include "FreeRTOS.h"
+#include "task.h"
 #include <stdint.h>
 #include "stm32c031xx.h"
 #include "CLK_CONFIG.h"
@@ -20,7 +21,7 @@ void BLINK_INIT (){
 
 void blink_rtos (void *params){
 
-	for(;;;){
+	for(;;){
 		GPIOA->BSRR = LED_ON; //pa5 SET
         vTaskDelay(pdMS_TO_TICKS(500));
         GPIOA->BSRR = LED_OFF;
@@ -28,16 +29,18 @@ void blink_rtos (void *params){
 
 	}
 }
-xTaskCreate(blink_rtos, "blink", 128, NULL, 1, NULL,);
-vTaskStartScheduler();
+
 
 int main(void)
 {
-	BLINK_INIT ();
-	//SYS_CLK_CONFIG();
+
+xTaskCreate(blink_rtos, "blink", 128, NULL, 1, NULL);
+vTaskStartScheduler();
+BLINK_INIT ();
+//SYS_CLK_CONFIG();
 
 	while (1){
 
 
-
+	}
 }
