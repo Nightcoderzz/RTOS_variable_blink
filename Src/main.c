@@ -21,11 +21,13 @@ void BLINK_INIT (){
 
 void blink_rtos (void *params){
 
+	TickType_t xLastWakeTime = xTaskGetTickCount();
+
 	for(;;){
 		GPIOA->BSRR = LED_ON; //pa5 SET
-		TaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
+		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
         GPIOA->BSRR = LED_OFF;
-        TaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
+        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
 
 	}
 }
