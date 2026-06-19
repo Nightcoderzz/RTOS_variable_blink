@@ -23,9 +23,9 @@ void blink_rtos (void *params){
 
 	for(;;){
 		GPIOA->BSRR = LED_ON; //pa5 SET
-        vTaskDelay(pdMS_TO_TICKS(500));
+		TaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
         GPIOA->BSRR = LED_OFF;
-        vTaskDelay(pdMS_TO_TICKS(500));
+        TaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(500));
 
 	}
 }
@@ -33,11 +33,13 @@ void blink_rtos (void *params){
 
 int main(void)
 {
-
-xTaskCreate(blink_rtos, "blink", 128, NULL, 1, NULL);
-vTaskStartScheduler();
+SYS_CLK_CONFIG();
 BLINK_INIT ();
-//SYS_CLK_CONFIG();
+xTaskCreate(blink_rtos, "blink", 128, NULL, 1, NULL);
+
+vTaskStartScheduler();
+
+
 
 	while (1){
 

@@ -3983,21 +3983,22 @@ int main(void)
  8001414:	b580      	push	{r7, lr}
  8001416:	b082      	sub	sp, #8
  8001418:	af02      	add	r7, sp, #8
-
-xTaskCreate(blink_rtos, "blink", 128, NULL, 1, NULL);
- 800141a:	4908      	ldr	r1, [pc, #32]	@ (800143c <main+0x28>)
- 800141c:	4808      	ldr	r0, [pc, #32]	@ (8001440 <main+0x2c>)
- 800141e:	2300      	movs	r3, #0
- 8001420:	9301      	str	r3, [sp, #4]
- 8001422:	2301      	movs	r3, #1
- 8001424:	9300      	str	r3, [sp, #0]
- 8001426:	2300      	movs	r3, #0
- 8001428:	2280      	movs	r2, #128	@ 0x80
- 800142a:	f7fe ff35 	bl	8000298 <xTaskCreate>
-vTaskStartScheduler();
- 800142e:	f7ff f8c7 	bl	80005c0 <vTaskStartScheduler>
 BLINK_INIT ();
- 8001432:	f7ff ffb5 	bl	80013a0 <BLINK_INIT>
+ 800141a:	f7ff ffc1 	bl	80013a0 <BLINK_INIT>
+xTaskCreate(blink_rtos, "blink", 128, NULL, 1, NULL);
+ 800141e:	4907      	ldr	r1, [pc, #28]	@ (800143c <main+0x28>)
+ 8001420:	4807      	ldr	r0, [pc, #28]	@ (8001440 <main+0x2c>)
+ 8001422:	2300      	movs	r3, #0
+ 8001424:	9301      	str	r3, [sp, #4]
+ 8001426:	2301      	movs	r3, #1
+ 8001428:	9300      	str	r3, [sp, #0]
+ 800142a:	2300      	movs	r3, #0
+ 800142c:	2280      	movs	r2, #128	@ 0x80
+ 800142e:	f7fe ff33 	bl	8000298 <xTaskCreate>
+
+vTaskStartScheduler();
+ 8001432:	f7ff f8c5 	bl	80005c0 <vTaskStartScheduler>
+
 //SYS_CLK_CONFIG();
 
 	while (1){
